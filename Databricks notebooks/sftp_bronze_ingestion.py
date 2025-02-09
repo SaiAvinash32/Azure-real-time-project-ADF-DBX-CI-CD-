@@ -14,7 +14,7 @@ storage_account_name = dbutils.widgets.get("storage_account_name")
 dbutils.widgets.text("LoadID", "")
 LoadID = dbutils.widgets.get("LoadID")
 
-# COMMAND ----------
+# COMMAND --------
 
 #storing source_file data in a dataframe
 file_path = f"abfss://landing@{storage_account_name}.dfs.core.windows.net/sftp_flatfiles/{source_file_name}"

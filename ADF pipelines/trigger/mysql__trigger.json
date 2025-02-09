@@ -1,0 +1,39 @@
+{
+	"name": "mysql__trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_mysql_ingestion",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"job_id": "102",
+					"metadata_database": "metadata_schema"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Month",
+				"interval": 12,
+				"startTime": "2023-11-25T05:04:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						0
+					],
+					"monthDays": [
+						24
+					]
+				}
+			}
+		}
+	}
+}

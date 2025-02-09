@@ -1,0 +1,7 @@
+pl_bronze_to_silver -> This pipeline loads data from bronze layer tables to silver layer tables.
+ 
+ Implementation steps:
+	1.loading_to_silver: Trigger the databricks notebook which contains script to insert records from bronze layer table to silver layer table. If loading_to_silver activity fails then go to step 2 otherwise go to step 3.
+	2. Trigger silver ingestion failure email alert and collect logs.
+	3. Collect logs for silver layer ingestion success. 
+	

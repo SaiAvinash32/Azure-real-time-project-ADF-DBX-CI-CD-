@@ -1,0 +1,6 @@
+pl_silver_to_gold -> This pipeline loads data from silver layer tables to gold layer tables.
+ 
+ Implementation steps:
+	1.loading_to_gold: Trigger the databricks notebook which contains script to insert records from silver layer table to gold layer table. If loading_to_gold activity fails then go to step 2 otherwise go to step 3.
+	2. Trigger gold ingestion failure email alert and collect logs.
+	3. Collect logs for gold layer ingestion success. 

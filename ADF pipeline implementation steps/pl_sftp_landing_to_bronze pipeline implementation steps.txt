@@ -1,0 +1,8 @@
+pl_sftp_landing_to_bronze -> This pipeline loads data(.csv files) into bronze layer table.
+
+Implementation steps:
+	1.loading_to_bronze: Trigger the databricks notebook which contains script to extract records from source file(in landing container) and insert those records in bronze layer table. If loading_to_bronze activity fails then go to step 2 otherwise go to step 3.
+	2. Trigger bronze ingestion failure email alert and collect logs.
+	3.Records Validation: Validate whether source files and records inserted in bronze layer tables are same or not. If validation fails go the step2, otherwise go to step 4.
+	4. Collect logs for bronze layer ingestion success. 
+	

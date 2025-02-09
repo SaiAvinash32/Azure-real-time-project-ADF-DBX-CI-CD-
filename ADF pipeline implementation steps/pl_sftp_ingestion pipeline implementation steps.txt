@@ -1,0 +1,14 @@
+pl_sftp_ingestion -> This pipeline ingests the data(.csv files) from external SFTP location to azure cloud(landing->bronze->silver->gold).
+
+Implementation steps:
+   1.Get Metadata details: Extract the relevant parameters from databricks metadata tables required to run adf pipeline.
+   1.1 Trigger pipeline inprogress email alert and store pipeline start time in a variable.
+   2.Get Source File details: Collects File names, file format from the SFTP source location.
+   3.Check Source File count: Validate whether files are available in SFTP source location or not. If Source File count = 0, then go to step 4, otherwise go the step 5.
+   4.Collect logs and trigger email alert and end the pipeline.
+   5.Copy Source Files: Copy source files to landing container in azure ADLS gen2.
+   6. Trigger sftp_landing_to_bronze pipeline.
+   7.On completion of step 6, move files to processed folder in landing container.
+   8. On Successful completion of step 7,Trigger bronze_to_silver pipeline.
+   9. On successful completion of step 8, trigger silver_to_gold pipeline.
+   10. On completion of step 9, trigger pipeline completion email alert(Success/Failure).

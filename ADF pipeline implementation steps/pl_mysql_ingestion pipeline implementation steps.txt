@@ -1,0 +1,14 @@
+pl_mysql_ingestion -> This pipeline ingests the data(.parquet files) from external mysql server to azure cloud(landing->bronze->silver->gold).
+
+Implementation steps:
+   1.Get Metadata details: Extract the relevant parameters from databricks metadata tables required to run adf pipeline.
+   2 Trigger pipeline inprogress email alert and store pipeline start time in a variable.
+   3.Copy Source Files: Copy table records(.parquet files) to landing container in azure ADLS gen2. If copy source files activity fails then go to step 3.1 otherwise go to step 3.2
+   3.1 Trigger copy failed email alert and collect logs.
+   3.2 Compare rowsread and rowscopied record count. If validation fails go to step 3.2.1 otherwise go to step 4
+   3.2.1 Trigger record mismatch email alert and collect logs.
+   4.Trigger mysql_landing_to_bronze pipeline.
+   5.On completion of step 4, move files to processed folder in landing container.
+   6. On Successful completion of step 4,Trigger bronze_to_silver pipeline.
+   7. On successful completion of step 6, trigger silver_to_gold pipeline.
+   8. On completion of step 7, trigger pipeline completion email alert(Success/Failure).
